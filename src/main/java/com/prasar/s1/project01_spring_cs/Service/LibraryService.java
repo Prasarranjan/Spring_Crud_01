@@ -43,7 +43,7 @@ public class LibraryService {
 
 
     public Library patch(int id, Map<String, Object> updates) {
-        Library library = libraryRepo.findById(id).get();
+        Library library = libraryRepo.findById(id).get();.
         updates.forEach((field,value) -> {
             Field fieldtobeupdated= ReflectionUtils.findField(Library.class ,field);
             fieldtobeupdated.setAccessible(true);
