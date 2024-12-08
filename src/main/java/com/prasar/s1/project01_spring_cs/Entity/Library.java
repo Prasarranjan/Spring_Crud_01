@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Library {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "Book_name")

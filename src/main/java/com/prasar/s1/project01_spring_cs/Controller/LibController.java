@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/lib")
@@ -30,6 +32,20 @@ public class LibController {
         return libraryService.getbookbyid(id);
     }
 
+    @PutMapping("/{id}")
+    public Library updatebook(@PathVariable int id, @RequestBody Library library) {
+        return libraryService.updatebook(id,library);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deletebook(@PathVariable int id) {
+        libraryService.deletebook(id);
+    }
+
+    @PatchMapping("/patch/{id}")
+    public Library patch(@PathVariable int id, @RequestBody Map<String, Object> updates) {
+        return libraryService.patch(id,updates);
+    }
 
 }
 
