@@ -11,6 +11,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class LibraryService {
@@ -28,8 +29,8 @@ public class LibraryService {
     }
 
 
-    public Library getbookbyid(int id) {
-        return libraryRepo.findById(id).get();
+    public Optional<Library> getbookbyid(int id) {
+        return libraryRepo.findById(id);
     }
 
     public Library updatebook(int id, Library library) {
@@ -43,7 +44,7 @@ public class LibraryService {
 
 
     public Library patch(int id, Map<String, Object> updates) {
-        Library library = libraryRepo.findById(id).get();.
+        Library library = libraryRepo.findById(id).get();
         updates.forEach((field,value) -> {
             Field fieldtobeupdated= ReflectionUtils.findField(Library.class ,field);
             fieldtobeupdated.setAccessible(true);

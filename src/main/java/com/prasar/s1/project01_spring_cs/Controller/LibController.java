@@ -1,13 +1,13 @@
 package com.prasar.s1.project01_spring_cs.Controller;
-
 import com.prasar.s1.project01_spring_cs.Entity.Library;
 import com.prasar.s1.project01_spring_cs.Service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/lib")
@@ -28,8 +28,14 @@ public class LibController {
     }
 
     @GetMapping("/getbookbyid/{id}")
-    public Library getbookbyid(@PathVariable int id) {
-        return libraryService.getbookbyid(id);
+    public ResponseEntity<Library> getbookbyid(@PathVariable int id) {
+        Optional<Library> resp= libraryService.getbookbyid(id);
+        if(resp.isPresent()) {
+            return ResponseEntity.ok(resp.get());
+
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
     @PutMapping("/{id}")
