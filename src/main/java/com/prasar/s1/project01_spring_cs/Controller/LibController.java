@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -30,13 +31,10 @@ public class LibController {
     @GetMapping("/getbookbyid/{id}")
     public ResponseEntity<Library> getbookbyid(@PathVariable int id) {
         Optional<Library> resp= libraryService.getbookbyid(id);
-        if(resp.isPresent()) {
-            return ResponseEntity.ok(resp.get());
-
-        }
-        return ResponseEntity.notFound().build();
+        return  ResponseEntity.ok(resp.get()) ;
 
     }
+
 
     @PutMapping("/{id}")
     public Library updatebook(@PathVariable int id, @RequestBody Library library) {
