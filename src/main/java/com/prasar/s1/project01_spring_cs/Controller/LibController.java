@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -42,7 +41,7 @@ public class LibController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deletebook(@PathVariable int id) {
+    public void Redeletebook(@PathVariable int id) {
         libraryService.deletebook(id);
     }
 
